@@ -1,0 +1,26 @@
+{
+ "https://feeds.npr.org/1001/rss.xml": {
+  "etag": null,
+  "modified": null
+ },
+ "https://feeds.npr.org/1014/rss.xml": {
+  "etag": null,
+  "modified": null
+ },
+ "https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml": {
+  "etag": null,
+  "modified": null
+ },
+ "https://techcrunch.com/feed/": {
+  "etag": "W/\"4ad422846f3452d5702ab59678bc7f81\"",
+  "modified": "Fri, 06 Nov 2026 14:59:25 GMT"
+ },
+ "https://www.nasa.gov/news-release/feed/": {
+  "etag": "\"b3d2e7c98bb350d8d5b56424c73640b8\"",
+  "modified": "Fri, 06 Nov 2026 15:04:23 GMT"
+ },
+ "https://www.espn.com/espn/rss/news": {
+  "etag": null,
+  "modified": null
+ }
+}
