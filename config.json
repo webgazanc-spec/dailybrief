@@ -1,0 +1,67 @@
+{
+  "site": {
+    "name": "DailyBrief US",
+    "tagline": "Today's top U.S. stories, briefly and in plain words",
+    "base_url": "https://webgazanc-spec.github.io/dailybrief",
+    "language": "en",
+    "timezone": "America/New_York",
+    "contact_email": "editor@example.com",
+    "per_page": 24,
+    "retention_days": 30,
+    "google_site_verification": ""
+  },
+
+  "ads": {
+    "enabled": true,
+    "head_code": "",
+    "ads_txt": "",
+    "every_n_cards": 6,
+    "slots": {
+      "header": "",
+      "in_feed": "",
+      "article_middle": "",
+      "article_bottom": "",
+      "footer": ""
+    }
+  },
+
+  "ai": {
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "openai_base_url": "https://api.openai.com/v1",
+    "max_new_per_run": 10,
+    "summary_words": [140, 220]
+  },
+
+  "originality": {
+    "shingle_size": 6,
+    "max_shared_ratio": 0.12,
+    "max_common_run_words": 10,
+    "retries": 2
+  },
+
+  "categories": {
+    "us": "U.S.",
+    "politics": "Politics",
+    "business": "Business",
+    "tech": "Technology",
+    "science": "Science",
+    "health": "Health",
+    "sports": "Sports",
+    "entertainment": "Entertainment",
+    "world": "World"
+  },
+
+  "sources": [
+    {"name": "NPR", "url": "https://feeds.npr.org/1001/rss.xml", "category": "us"},
+    {"name": "NPR Politics", "url": "https://feeds.npr.org/1014/rss.xml", "category": "politics"},
+    {"name": "BBC US & Canada", "url": "https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml", "category": "us"},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/feed/", "category": "tech"},
+    {"name": "NASA", "url": "https://www.nasa.gov/news-release/feed/", "category": "science"},
+    {"name": "ESPN", "url": "https://www.espn.com/espn/rss/news", "category": "sports"}
+  ],
+
+  "blocked_sources": [],
+  "blocked_urls": []
+}
