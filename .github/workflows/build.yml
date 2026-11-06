@@ -1,0 +1,56 @@
+name: Build news site
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"      # каждые 30 минут
+  workflow_dispatch: {}          # кнопка «Run workflow» для ручного запуска
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch feeds, write briefs, render site
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python build.py
+
+      - name: Save article database
+        run: |
+          git config user.name  "newsbot"
+          git config user.email "newsbot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Update articles $(date -u +%F' '%H:%M)"
+          git push
+
+      # --- Вариант А: GitHub Pages (проще всего) ---
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - uses: actions/deploy-pages@v4
+        id: deployment
+
+      # --- Вариант Б: Cloudflare Pages (нужен для показа только в США) ---
+      # Закомментируйте два шага выше и раскомментируйте этот.
+      # - uses: cloudflare/wrangler-action@v3
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     command: pages deploy public --project-name=dailybrief-us
